@@ -1,0 +1,257 @@
+@import './base.css';
+
+
+body {
+    @apply text-[#616161] text-xs flex flex-grow w-screen overflow-x-hidden;;
+}
+
+.w-logo {
+    @apply max-w-[130px];
+}
+
+.input {
+    @apply border border-[#EDE7F6] bg-[#FAFAFA];
+}
+
+.input:focus,
+.input:focus-within,
+.textarea:focus-within {
+    @apply outline-none border-transparent ring-0;
+}
+
+.social-login-btn {
+    @apply btn bg-[#FAFAFA] border border-[#F5F5F5] hover:border-[#BDBDBD];
+}
+
+.action-btn {
+    @apply btn btn-outline btn-sm border border-[#BDBDBD] text-[#757575] font-light hover:bg-[#BDBDBD];
+}
+
+.btn-dark {
+    @apply bg-[#212121] text-white hover:bg-black hover:text-white;
+}
+
+.refer-card {
+    background-image: url(../images/refer-bg.svg);
+    background-position: 0 -30px;
+    @apply bg-primary text-white bg-cover bg-no-repeat;
+}
+
+.refer-card .join {
+    @apply border-2 border-[#00000023];
+}
+
+.gray-text {
+    @apply text-[#616161];
+}
+
+.card {
+    @apply shadow;
+}
+
+/* Auth screen start */
+.auth-hero-bg {
+    background-image: url(./images/auth-hero-bg.svg);
+    @apply bg-[#FDF4E3] bg-cover bg-right-bottom flex justify-center items-center;
+}
+
+.auth-divider:before,
+.auth-divider:after {
+    @apply bg-[#EDE7F6];
+}
+
+/* Auth screen end */
+
+.main {
+    @apply flex flex-col max-h-screen h-screen w-screen max-w-full;
+}
+
+/* Topbar CSS start */
+.topbar {
+    @apply px-6 py-3 bg-white flex justify-between;
+}
+
+.topbar .left {
+    @apply w-44 lg:w-64 flex justify-between items-center;
+}
+
+.topbar .right {
+    @apply flex w-40 lg:w-44 justify-between items-center;
+}
+
+.topbar .profile-actions {
+    @apply flex w-28 justify-between items-center border-2 border-[#E3F2FD] px-4 py-2 rounded-full;
+}
+
+.topbar .profile-actions .profile-image {
+    @apply bg-primary rounded-full w-9 h-9;
+}
+
+.topbar .action-btn {
+    @apply bg-[#F5F5F5] w-8 h-8 flex justify-center items-center rounded-lg p-0;
+}
+
+.topbar .action-btn img {
+    @apply w-4 h-4;
+}
+
+/* Topbar CSS end */
+
+.content {
+    @apply bg-[#F1F1F1] flex-grow max-h-[90vh] overflow-y-auto rounded-xl p-6 flex gap-y-4 flex-col;
+}
+
+/* Sidebar CSS end */
+.sidebar {
+    @apply hidden lg:flex flex-col gap-2 px-5 bg-white min-w-max;
+}
+
+.sidebar>a {
+    @apply flex items-center p-3 text-sm rounded-xl text-[#212121];
+}
+
+.sidebar>a.active,
+.sidebar>a:hover {
+    @apply bg-[#F5F5F5];
+}
+
+.sidebar>a>img {
+    @apply mr-3;
+}
+
+/* Sidebar CSS end */
+
+/* content-head */
+.content-head {
+    @apply flex justify-between items-center card bg-white flex-row p-3 gap-3;
+}
+
+.content-head h1,
+.page-title {
+    @apply font-bold text-[#212121] text-base;
+}
+
+/* Table start */
+.table-cover {
+    @apply card card-compact bg-white py-3;
+}
+
+.table-cover-heading {
+    @apply border-b border-[#F5F5F5] px-4 pb-4 pt-1;
+}
+
+.table-cover-heading h2 {
+    @apply font-bold text-base;
+}
+
+.table {
+    @apply text-[#616161];
+}
+
+.table tr {
+    @apply border-[#F5F5F5];
+}
+
+.table tbody tr:hover {
+    @apply bg-[#F5F5F5];
+}
+
+.table thead th {
+    @apply text-sm font-normal text-[#212121];
+}
+
+/* .table tbody td {
+      @apply text-xs
+  } */
+
+.action-td {
+    @apply flex gap-4;
+}
+
+.action-td button {
+    @apply transition-all;
+}
+
+.action-td button:hover {
+    @apply scale-110;
+}
+
+/* Table end */
+
+/* Pagination start */
+.pagination {
+    @apply flex justify-end pt-5 border-t border-[#F5F5F5] text-[#616161];
+}
+
+/* Pagination end */
+
+/* Modal start */
+.modal-box {
+    @apply p-0;
+}
+
+.modal-head,
+.modal-body {
+    @apply p-4;
+}
+
+.modal-head {
+    @apply border-b border-[#E3F2FD];
+}
+
+.modal-head h3 {
+    @apply font-bold;
+}
+
+.model-esc {
+    @apply text-gray-300;
+}
+
+/* Modal end */
+
+/* Custom Color Picker */
+
+.custom-color-picker {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.input-color-picker {
+    border: 1px;
+    padding: 10px;
+    width: 200%;
+    height: 200%;
+    cursor: pointer;
+    transform: translate(-25%, -25%);
+}
+
+.radius-border {
+    border-radius: 50%;
+    padding: 7px;
+    opacity: 4;
+}
+
+.dataTables_filter {
+    display: none;
+}
+
+.dataTables_length label {
+    margin-right: 10px;
+}
+
+.dataTable {
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    border: none !important;
+}
+
+.dataTable thead th,
+.dataTable tbody td {
+    border: none !important;
+}
+
+span[role="alert"]{
+    @apply text-red-400
+}
