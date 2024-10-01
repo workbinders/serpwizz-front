@@ -2,7 +2,11 @@
 
 
 body {
-    @apply text-[#616161] text-xs flex flex-grow w-screen overflow-x-hidden;;
+    @apply text-[#616161] text-xs flex flex-grow w-full overflow-x-hidden;
+}
+
+.body {
+    @apply flex
 }
 
 .w-logo {
@@ -32,7 +36,7 @@ body {
 }
 
 .refer-card {
-    background-image: url(../images/refer-bg.svg);
+    background-image: url(./images/refer-bg.svg);
     background-position: 0 -30px;
     @apply bg-primary text-white bg-cover bg-no-repeat;
 }
@@ -67,31 +71,16 @@ body {
 }
 
 /* Topbar CSS start */
-.topbar {
-    @apply px-6 py-3 bg-white flex justify-between;
+
+.navbar .profile-actions {
+    @apply flex w-28 justify-between items-center border-2 border-[#E3F2FD] px-3 h-14 rounded-full;
 }
 
-.topbar .left {
-    @apply w-44 lg:w-64 flex justify-between items-center;
-}
-
-.topbar .right {
-    @apply flex w-40 lg:w-44 justify-between items-center;
-}
-
-.topbar .profile-actions {
-    @apply flex w-28 justify-between items-center border-2 border-[#E3F2FD] px-4 py-2 rounded-full;
-}
-
-.topbar .profile-actions .profile-image {
-    @apply bg-primary rounded-full w-9 h-9;
-}
-
-.topbar .action-btn {
+.navbar .action-btn {
     @apply bg-[#F5F5F5] w-8 h-8 flex justify-center items-center rounded-lg p-0;
 }
 
-.topbar .action-btn img {
+.navbar .action-btn img {
     @apply w-4 h-4;
 }
 
@@ -102,20 +91,24 @@ body {
 }
 
 /* Sidebar CSS end */
-.sidebar {
+.drawer-side {
     @apply hidden lg:flex flex-col gap-2 px-5 bg-white min-w-max;
 }
 
-.sidebar>a {
-    @apply flex items-center p-3 text-sm rounded-xl text-[#212121];
+.drawer-side a {
+    @apply flex items-center p-3 text-base rounded-xl text-[#212121];
 }
 
-.sidebar>a.active,
-.sidebar>a:hover {
-    @apply bg-[#F5F5F5];
+.drawer-side a.router-link-exact-active,
+.drawer-side a:hover {
+    @apply !bg-[#F5F5F5];
 }
 
-.sidebar>a>img {
+.drawer-side li {
+    @apply my-1;
+}
+
+.drawer-side a img {
     @apply mr-3;
 }
 
@@ -252,6 +245,6 @@ body {
     border: none !important;
 }
 
-span[role="alert"]{
+span[role="alert"] {
     @apply text-red-400
 }

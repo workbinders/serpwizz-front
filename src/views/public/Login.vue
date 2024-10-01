@@ -111,14 +111,9 @@ const APP_URL = inject('APP_URL')
 const { login } = useUserStore()
 const router = useRouter()
 
-// const form = {
-//   email: null,
-//   password: null
-// }
-
 const form = {
-  email: 'sandeep.solanki2010+1@gmail.com',
-  password: 'Sandeep@123'
+  email: null,
+  password: null
 }
 
 const schema = yup.object({
@@ -129,7 +124,7 @@ const schema = yup.object({
 const submit = async () => {
   const response = await login(form)
   if (response.status === true) {
-    router.push({ name: 'Login' })
+    router.push({ name: 'Dashboard' })
   }
 }
 </script>

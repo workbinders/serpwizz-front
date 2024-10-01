@@ -22,7 +22,10 @@ export default {
           ...require('daisyui/src/theming/themes')['[data-theme=light]'],
           primary: '#FFB400',
           secondary: '#FFA000',
-          'primary-content': 'white'
+          accent: '#000000',
+          'primary-content': 'white',
+          'secondary-content': 'white',
+          'accent-content': 'white'
         }
       }
     ]

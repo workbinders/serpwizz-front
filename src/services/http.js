@@ -3,7 +3,6 @@ import { toast } from 'vue3-toastify'
 import 'vue3-toastify/dist/index.css'
 
 import API from '@/services/index'
-import { useUserStore } from '../stores/user'
 import { useValidationStore } from '../stores/validation'
 
 const toastId = ref('')
@@ -28,24 +27,6 @@ const updateNotify = (message, type = 'error') =>
 const dismissNotify = () => toast.clearAll()
 
 export default {
-  authenticate(data) {
-    const { storeAuthenticate, storeToken } = useUserStore()
-    return new Promise(async (resolve) => {
-      await API.post('login', data)
-        .then(async (response) => {
-          if (response && response.status == true) {
-            await storeToken(response.data.token)
-            await storeAuthenticate(response.data)
-            resolve(response.data)
-          } else {
-            resolve(response.data)
-          }
-        })
-        .catch((error) => {
-          console.warn(error)
-        })
-    })
-  },
   get(url) {
     return new Promise((resolve, reject) => {
       API.get(url)
@@ -99,16 +80,12 @@ export default {
         })
     })
   },
-  logout(data) {
-    return new Promise((resolve) => {
-      API.post('logout')
-        .then((response) => {
-          resolve(response.data)
-        })
-        .catch((error) => {
-          console.warn(error)
-        })
-    })
+  handleError(error) {
+    const { setErrors } = useValidationStore()
+    if (error.response.status == VALIDATION_ERROR_CODE) {
+      setErrors(error.response.data.errors)
+    }
   },
-  VALIDATION_ERROR_CODE: 422
+  VALIDATION_ERROR_CODE: 422,
+  AUTH_ERROR_CODE: 401
 }

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import publicRoutes from './public'
 import privateRoutes from './private'
+import { useUserStore } from '@/stores/user'
 
 const routes = publicRoutes.concat(privateRoutes)
 
@@ -12,7 +13,7 @@ const router = createRouter({
   }
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const nearestWithTitle = to.matched
     .slice()
     .reverse()
@@ -21,7 +22,35 @@ router.beforeEach((to, from, next) => {
   if (nearestWithTitle) {
     document.title = nearestWithTitle.meta.title + ' - ' + import.meta.env.VITE_APP_NAME
   }
-  next()
+
+  const userStore = useUserStore()
+
+  if (to.matched.some((route) => route.meta.requiresAuth)) {
+    try {
+      const user = await userStore.getUser
+      if (user && user != null) {
+        next()
+      } else {
+        next({ name: 'Login' })
+      }
+    } catch (error) {
+      console.log(error)
+      next({ name: 'Login' })
+    }
+  } else if (to.matched.some((route) => route.meta.onlyGuest)) {
+    try {
+      if ((await userStore.getUser) != null) {
+        next({ name: 'Dashboard' })
+      } else {
+        next()
+      }
+    } catch (error) {
+      console.log(error)
+      next({ name: 'Dashboard' })
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
