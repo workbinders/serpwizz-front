@@ -195,12 +195,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="i in 10" key="i">
+              <tr v-for="(lead, index) in data?.leads?.data" :key="index">
                 <td>
-                  <a href="#" target="_blank" >developer.zapier.com</a>
+                  <a href="#" target="_blank">{{ lead.website }}</a>
                 </td>
-                <td>0123456789</td>
-                <td>John Doe</td>
+                <td>{{ lead.phone }}</td>
+                <td>{{ lead.full_name }}</td>
                 <td>
                   <div class="progress_lead" data-percentage="59">
                     <span class="progress_lead-left">
@@ -210,18 +210,17 @@
                       <span class="progress_lead-bar"></span>
                     </span>
                     <div class="progress_lead-value">
-                      <div>59</div>
+                      <div>{{ lead.score }}</div>
                     </div>
                   </div>
                 </td>
-                <td data-search="14 Jun 23" data-order="14 Jun 23">14 Jun 23</td>
+                <td data-search="14 Jun 23" data-order="14 Jun 23">{{ lead.date }}</td>
                 <td class="action-td">
                   <div class="arrow-up"></div>
 
                   <a
                     href="#"
                     target="_blank"
-                    class="waves-effect waves-light"
                     data-toggle="tooltip"
                     data-placement="top"
                     title="View Report"
@@ -229,15 +228,15 @@
                     <IconEdit />
                   </a>
 
-                  <a
-                    href="#"
-                    class="waves-effect waves-light delete_keyword"
+                  <button
                     data-id="0"
                     data-toggle="tooltip"
                     data-placement="top"
                     title="Delete Report"
-                    ><IconTrash
-                  /></a>
+                    @click="deleteLead(lead.id, index)"
+                  >
+                    <IconTrash />
+                  </button>
                 </td>
               </tr>
             </tbody>
@@ -249,7 +248,8 @@
 </template>
 
 <script setup>
-import { inject } from 'vue'
+import { inject, ref, onMounted } from 'vue'
+import leadService from '@/services/leads'
 
 // Layout
 import Auth from '@/layouts/Auth.vue'
@@ -261,4 +261,29 @@ import IconEdit from '@/components/icons/IconEdit.vue'
 import IconTrash from '@/components/icons/IconTrash.vue'
 
 const APP_URL = inject('APP_URL')
+
+const data = ref([])
+
+const loadData = async () => {
+  try {
+    data.value = await leadService.index()
+  } catch (error) {
+    console.error('Error loading data:', error)
+  }
+}
+
+const deleteLead = async (id, index) => {
+  try {
+    console.log(id)
+
+    if (confirm('Are you sure to delete lead?')) {
+      await leadService.delete(id)
+      data.value.leads.data.splice(index, 1)
+    }
+  } catch (error) {
+    console.error('Error loading data:', error)
+  }
+}
+
+onMounted(loadData)
 </script>

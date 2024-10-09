@@ -10,10 +10,12 @@
         <slot />
       </div>
     </div>
+    <AuditPopup />
   </div>
 </template>
 
 <script setup>
 import TopBar from '@/components/layouts/TopBar.vue'
 import SideBar from '@/components/layouts/SideBar.vue'
+import AuditPopup from '@/components/AuditPopup.vue'
 </script>
