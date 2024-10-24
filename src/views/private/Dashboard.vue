@@ -218,15 +218,15 @@
                 <td class="action-td">
                   <div class="arrow-up"></div>
 
-                  <a
-                    href="#"
+                  <RouterLink
+                    :to="{ name: 'Report', params: { lead: lead.id } }"
                     target="_blank"
                     data-toggle="tooltip"
                     data-placement="top"
                     title="View Report"
                   >
                     <IconEdit />
-                  </a>
+                  </RouterLink>
 
                   <button
                     data-id="0"
@@ -248,6 +248,7 @@
 </template>
 
 <script setup>
+import { RouterLink } from 'vue-router'
 import { inject, ref, onMounted } from 'vue'
 import leadService from '@/services/leads'
 

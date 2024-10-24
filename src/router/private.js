@@ -63,6 +63,15 @@ export default [
     }
   },
   {
+    path: '/report/:lead',
+    name: 'Report',
+    component: () => import('../views/private/Report.vue'),
+    meta: {
+      title: 'White Label Settings',
+      requiresAuth: true
+    }
+  },
+  {
     path: '/tools',
     name: 'Tools',
     component: () => import('../views/private/tools/Index.vue'),
